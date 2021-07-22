@@ -1,3 +1,4 @@
+![1](https://user-images.githubusercontent.com/72718608/126649437-9e19b4a6-0052-40aa-962a-b91fe2da3040.png)
 <h2>위장</h2>
 <h6>문제 설명</h6>
 <p>스파이들은 매일 다른 옷을 조합하여 입어 자신을 위장합니다.</p>
