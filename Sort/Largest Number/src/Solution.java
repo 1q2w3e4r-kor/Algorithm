@@ -1,5 +1,5 @@
-import java.util.Arrays;
-import java.util.Collections;
+import java.util.Comparator;
+import java.util.PriorityQueue;
 
 public class Solution {
 
@@ -11,37 +11,16 @@ public class Solution {
 
 	public static String solution(int[] numbers) {
 		String answer = "";
-		
-		String[] snumbers = Arrays.stream(numbers).mapToObj(String::valueOf).toArray(String[]::new);
-		Arrays.sort(snumbers, Collections.reverseOrder());
-		String stmp;
-		for(int i=0;i<snumbers.length-1;i++) {
-			for(int j=i+1;j<snumbers.length;j++) {
-				if(snumbers[i].charAt(0)!=snumbers[j].charAt(0)) break;
-				if(snumbers[i].length()==snumbers[j].length()) {
-					if(snumbers[i].compareTo(snumbers[j])<0) {
-						stmp=snumbers[i];
-						snumbers[i]=snumbers[j];
-						snumbers[j]=stmp;
-					}
-				}else if(snumbers[i].length()>snumbers[j].length()) {
-					if(snumbers[i].charAt(1)<snumbers[i].charAt(0)) {
-						stmp=snumbers[i];
-						snumbers[i]=snumbers[j];
-						snumbers[j]=stmp;
-					}else if(snumbers[i].charAt(1)==snumbers[i].charAt(0)) {
-						if(snumbers[i].charAt(2)<snumbers[i].charAt(1)) {
-							stmp=snumbers[i];
-							snumbers[i]=snumbers[j];
-							snumbers[j]=stmp;
-						}
-					}
-				}
+		PriorityQueue<String> queue = new PriorityQueue<String>(new Comparator<String>() {
+			public int compare(String o1, String o2) {
+				return Integer.parseInt(o2+o1)-Integer.parseInt(o1+o2);
 			}
-		}		
-		for (String a : snumbers)answer += a;
-		if (answer.charAt(0) == 0)return "0";
-		return answer;
+			
+		});
+        for (int a : numbers) queue.add(Integer.toString(a));
+        while (!queue.isEmpty()) answer += queue.poll();
+        if (answer.charAt(0) == '0') return "0";
+        return answer;
 	}
 	
 }
