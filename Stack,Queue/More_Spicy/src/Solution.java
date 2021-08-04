@@ -1,4 +1,3 @@
-import java.util.Collections;
 import java.util.PriorityQueue;
 
 public class Solution {
@@ -12,15 +11,15 @@ public class Solution {
         int answer = 0;
         PriorityQueue<Integer> pq = new PriorityQueue<>();
         for(int a:scoville) pq.add(a);
+        if(pq.peek()==null) return -1;
         while(pq.peek()<=K) {
         	int first = pq.poll();
+        	if(pq.peek()==null) return -1;
         	int second = pq.poll();
         	pq.add(first+second*2);
         	answer++;
-        	System.out.println(first+" "+second+" "+(first+second*2));
+        	
         }
-        while(!pq.isEmpty()) System.out.print(pq.poll()+" ");
-        System.out.println();
         return answer;
     }
 }

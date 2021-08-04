@@ -11,7 +11,7 @@ public class Solution {
 
 	public static String solution(int[] numbers) {
 		String answer = "";
-		PriorityQueue<String> queue = new PriorityQueue<String>(new Comparator<String>() {
+		PriorityQueue<String> queue = new PriorityQueue<>(new Comparator<String>() {
 			public int compare(String o1, String o2) {
 				return Integer.parseInt(o2+o1)-Integer.parseInt(o1+o2);
 			}
