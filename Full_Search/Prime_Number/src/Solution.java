@@ -13,7 +13,7 @@ public class Solution {
 	public static int solution(String numbers) {
 		int answer =0;
 		String[] output = new String[numbers.length()];
-        boolean[] visited = new boolean[numbers.length()];
+        	boolean[] visited = new boolean[numbers.length()];
 		HashMap<Integer,Integer> map = new HashMap<>();
 		String[] arr = numbers.split("");
 		for(int i =1;i<=numbers.length();i++) {
