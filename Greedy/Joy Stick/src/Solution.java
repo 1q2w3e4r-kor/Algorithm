@@ -3,7 +3,7 @@ import java.util.HashMap;
 public class Solution {
 
 	public static void main(String[] args) {
-		String name ="ZAAAZZZZZZZ";
+		String name ="ABAAAAAAAAABB";
 		System.out.println(solution(name));
 	}
 	
@@ -19,51 +19,46 @@ public class Solution {
 		int dir =1;
 		int tmp=0;
 		if(word.get(1).charAt(0)=='A')  dir = -1;
-		
 		while(visited.containsValue(0)) {
 			if(idx == -1) idx=word.size()-1;
-			
+			else if(idx == word.size()) idx=0;
 			int cnt=0;
-			System.out.println(idx);
 			char ch = word.get(idx).charAt(0);
-			
-			
 			if(idx != 0 && ch !='A') cnt=1;
-			
 			if(ch=='A') tmp+=1;
-			else {
+			else if(visited.get(idx)==0){
 				if(tmp !=0) {
 					cnt+=tmp;
 					tmp=0;
 				}
 				if(ch>='O') 	cnt+='Z'-ch+1;
 				else cnt += ch-'A';
-			}
+			}else cnt=0;
 			if(visited.get(0)==0 && ch=='A') tmp=0;
 			visited.replace(idx, 1);
 			
-			
-			int right = 0, left=0;
-			while(right<=word.size()) {
-				int i=idx;
-				if(i>=word.size()) i-=word.size();
-				if(word.get(i).charAt(0) != 'A' && visited.get(i)==0) break;
+			int right=1,left=1;
+			int i=idx+1;
+			while(true) {
+				if(i==word.size()) i=0;
+				if(word.get(i).charAt(0)!='A' && visited.get(i)==0) break;
+				else if(right>=word.size()) break;
 				right++;
 				i++;
 			}
-			while(left<=word.size()) {
-				int i=idx;
-				if(i<0) i+=word.size();
-				if(word.get(i).charAt(0) != 'A' && visited.get(i)==0) break;
+			i=idx-1;
+			while(true) {
+				if(i==-1) i=word.size()-1;
+				if(word.get(i).charAt(0)!='A' && visited.get(i)==0) break;
+				else if(left>=word.size()) break;
 				left++;
 				i--;
 			}
-			
-			if(right<left) dir=-1;
-			else dir=1;
-			
+			if(left>=right) dir=1;
+			else dir=-1;
 			idx+=dir;
 			answer+=cnt;
+			System.out.println(answer);
 			
 		}
         return answer;
